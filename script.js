@@ -26,6 +26,22 @@ document.getElementById('dropzone').addEventListener('drop', function(e) {
     e.preventDefault();
     let data = e.dataTransfer.getData('text');
     this.textContent += data; // Append the dropped syllable to form words
+
+    // Speak the dropped syllable
+    let utterance = new SpeechSynthesisUtterance(data);
+    window.speechSynthesis.speak(utterance);
 });
+
+document.getElementById('readWord').addEventListener('click', function() {
+    let word = document.getElementById('dropzone').textContent;
+    let utterance = new SpeechSynthesisUtterance(word);
+    utterance.rate = 0.6; // 80% of the normal speed
+    window.speechSynthesis.speak(utterance);
+});
+
+document.getElementById('clearWord').addEventListener('click', function() {
+    document.getElementById('dropzone').textContent = '';
+});
+
 
 createCards();
