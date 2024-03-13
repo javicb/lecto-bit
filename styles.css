@@ -5,7 +5,6 @@ body {
     align-items: center;
     height: 80vh;
     margin: 0;
-    /* background-color: #FFD700; /* gold */
     background-color: #ADD8E6; /* LightBlue */
     font-family: 'Comic Sans MS', cursive, sans-serif; /* a fun, child-friendly font */
 }
@@ -17,7 +16,6 @@ body::before {
     left: 20%;
     width: 100px;
     height: 100px;
-    /* background-color: rgba(255, 105, 180, 0.5); /* semi-transparent hot pink */
     background-color: rgba(255, 255, 0, 0.5); /* semi-transparent Yellow */
     border-radius: 50%; /* make it circular */
     z-index: -1; /* put it behind the content */
@@ -30,7 +28,6 @@ body::after {
     right: 10%;
     width: 200px;
     height: 200px;
-    /* background-color: rgba(30, 144, 255, 0.5); /* semi-transparent dodger blue */
     background-color: rgba(50, 205, 50, 0.5); /* semi-transparent LimeGreen */
     transform: rotate(45deg); /* rotate it to make it a diamond */
     z-index: -1; /* put it behind the content */
@@ -48,8 +45,6 @@ body::after {
     font-size: 48px;
 }
 
-
-
 .card {
     width: 60px; /* Adjust the width as needed */
     height: 60px; /* Adjust the height as needed */
@@ -64,6 +59,12 @@ body::after {
     cursor: move;
     user-select: none;
     border-radius: 50%; /* make the cards circular */
+    transition: background-color 0.3s ease; /* Add a transition */
+}
+
+.card:hover {
+    background-color: #f0f0f0; /* Change this to your desired hover color */
+    cursor: pointer;
 }
 
 .dropzone {
@@ -76,7 +77,7 @@ body::after {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 48px; /* Increase font size */
+    font-size: 128px; /* Increase font size */
     border-radius: 20%; /* make the dropzone oval */
 }
 
@@ -149,7 +150,6 @@ body::after {
 
 #main-content {
     flex: 3 0 calc(100% - 200px); /* flex-grow | flex-shrink | flex-basis */
-    /* Add your main content styles here */
 }
 
 @media (max-width: 600px) {
