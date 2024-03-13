@@ -40,28 +40,14 @@ function createCards(syllables, containerId) {
     });
 }
 
-createCards(syllables1, 'cards1');
-createCards(syllables2, 'cards2');
-createCards(syllables3, 'cards3');
-createCards(syllables4, 'cards4');
-createCards(syllables5, 'cards5');
-createCards(syllables6, 'cards6');
-createCards(syllables7, 'cards7');
-createCards(syllables8, 'cards8');
-createCards(syllables9, 'cards9');
-createCards(syllables10, 'cards10');
-createCards(syllables11, 'cards11');
-createCards(syllables12, 'cards12');
-createCards(syllables13, 'cards13');
-createCards(syllables14, 'cards14');
-createCards(syllables15, 'cards15');
-createCards(syllables16, 'cards16');
-createCards(syllables17, 'cards17');
-createCards(syllables18, 'cards18');
-createCards(syllables19, 'cards19');
-createCards(syllables20, 'cards20');
+const syllablesArray = [syllables1, syllables2, syllables3, syllables4, syllables5, syllables6, syllables7, syllables8, syllables9, syllables10, syllables11, syllables12, syllables13, syllables14, syllables15, syllables16, syllables17, syllables18, syllables19, syllables20];
+const containerIds = ['cards1', 'cards2', 'cards3', 'cards4', 'cards5', 'cards6', 'cards7', 'cards8', 'cards9', 'cards10', 'cards11', 'cards12', 'cards13', 'cards14', 'cards15', 'cards16', 'cards17', 'cards18', 'cards19', 'cards20'];
 
-let dropzone = document.getElementById('dropzone');
+syllablesArray.forEach((syllables, index) => {
+    createCards(syllables, containerIds[index]);
+});
+
+const dropzone = document.getElementById('dropzone');
 
 dropzone.addEventListener('dragover', function(e) {
     e.preventDefault();
@@ -71,25 +57,12 @@ dropzone.addEventListener('drop', function(e) {
     e.preventDefault();
     let data = e.dataTransfer.getData('text');
     this.textContent += data; // Append the dropped syllable to form words
-
-    // Speak the dropped syllable
-    let utterance = new SpeechSynthesisUtterance(data);
-    window.speechSynthesis.speak(utterance);
-});
-
-dropzone.addEventListener('touchmove', function(e) {
-    e.preventDefault();
 });
 
 dropzone.addEventListener('touchend', function(e) {
     e.preventDefault();
     let data = e.dataTransfer.getData('text');
     this.textContent += data; // Append the dropped syllable to form words
-
-    // Speak the dropped syllable
-    let utterance = new SpeechSynthesisUtterance(data);
-    utterance.rate = 0.6; // 80% of the normal speed
-    window.speechSynthesis.speak(utterance);
 });
 
 document.getElementById('readWord').addEventListener('click', function() {
