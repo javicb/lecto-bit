@@ -8,6 +8,9 @@ function createCard(syllable) {
     card.addEventListener('dragstart', function(e) {
         e.dataTransfer.setData('text', this.textContent);
     });
+    card.addEventListener('touchstart', function(e) {
+        e.dataTransfer.setData('text', this.textContent);
+    });
     return card;
 }
 
@@ -18,17 +21,34 @@ function createCards() {
     });
 }
 
-document.getElementById('dropzone').addEventListener('dragover', function(e) {
+let dropzone = document.getElementById('dropzone');
+
+dropzone.addEventListener('dragover', function(e) {
     e.preventDefault();
 });
 
-document.getElementById('dropzone').addEventListener('drop', function(e) {
+dropzone.addEventListener('drop', function(e) {
     e.preventDefault();
     let data = e.dataTransfer.getData('text');
     this.textContent += data; // Append the dropped syllable to form words
 
     // Speak the dropped syllable
     let utterance = new SpeechSynthesisUtterance(data);
+    window.speechSynthesis.speak(utterance);
+});
+
+dropzone.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+});
+
+dropzone.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    let data = e.dataTransfer.getData('text');
+    this.textContent += data; // Append the dropped syllable to form words
+
+    // Speak the dropped syllable
+    let utterance = new SpeechSynthesisUtterance(data);
+    utterance.rate = 0.6; // 80% of the normal speed
     window.speechSynthesis.speak(utterance);
 });
 
@@ -42,6 +62,5 @@ document.getElementById('readWord').addEventListener('click', function() {
 document.getElementById('clearWord').addEventListener('click', function() {
     document.getElementById('dropzone').textContent = '';
 });
-
 
 createCards();
