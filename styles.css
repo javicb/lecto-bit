@@ -36,6 +36,11 @@ body::after {
     z-index: -1; /* put it behind the content */
 }
 
+.container {
+    display: flex;
+    align-items: start;
+}
+
 .greeting {
     text-align: center;
     color: #FF69B4;
@@ -43,27 +48,18 @@ body::after {
     font-size: 48px;
 }
 
-#cards {
-    width: 200px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-    background-color: #FF69B4; /* hot pink */
-    padding: 20px;
-    box-sizing: border-box;
-}
+
 
 .card {
-    width: 100px;
-    height: 100px;
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    line-height: 60px; /* Make this the same as the height to vertically center the text */
+    font-size: 14px; /* Adjust the font size as needed */
     border: 1px solid #1E90FF; /* dodger blue */
     background-color: #ADFF2F; /* green yellow */
     color: #0000FF; /* blue */
     display: inline-block;
     text-align: center;
-    line-height: 100px;
     margin: 10px;
     cursor: move;
     user-select: none;
@@ -90,6 +86,18 @@ body::after {
     gap: 20px; /* Add some space between the buttons */
 }
 
+#cards {
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: #FF69B4; /* hot pink */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 #readWord, #clearWord {
     padding: 10px 20px;
     font-size: 24px;
@@ -112,4 +120,40 @@ body::after {
 #clearWord:hover {
     background-color: #1E90FF; /* dodger blue */
     color: #FFD700; /* gold */
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* This will add a vertical scrollbar if the content exceeds the height */
+    height: 100vh; /* Set a specific height */
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    background-color: #FF69B4; /* hot pink */
+    padding: 20px;
+    padding-right: 20px;
+    width: 200px; /* Add a width */
+    transition: width 0.5s; /* Add a transition */
+}
+
+#sidebar.collapsed {
+    width: 0;
+}
+
+#sidebar > div {
+    flex: 0 0 auto;
+    margin-bottom: 20px; /* Add some space between the card groups */
+}
+
+#main-content {
+    flex: 3 0 calc(100% - 200px); /* flex-grow | flex-shrink | flex-basis */
+    /* Add your main content styles here */
+}
+
+@media (max-width: 600px) {
+    #sidebar, #main-content {
+        flex-basis: 100%;
+    }
 }
