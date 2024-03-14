@@ -139,10 +139,6 @@ body::after {
     transition: width 0.5s; /* Add a transition */
 }
 
-#sidebar.collapsed {
-    width: 0;
-}
-
 #sidebar > div {
     flex: 0 0 auto;
     margin-bottom: 20px; /* Add some space between the card groups */
@@ -150,6 +146,7 @@ body::after {
 
 #main-content {
     flex: 3 0 calc(100% - 200px); /* flex-grow | flex-shrink | flex-basis */
+    margin-left: 200px; /* Add a left margin equal to the width of the sidebar */
 }
 
 @media (max-width: 600px) {
